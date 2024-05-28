@@ -1,0 +1,170 @@
+.rounded {
+    width: 64px;
+    height: 10px;
+    background-color: #f2f2f2;
+    border: 3px solid #a09e9e;
+    padding: 0.5em;
+    line-height: 1em;
+    border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    /* display: none; */
+
+    position: absolute;
+    top: 184px;
+    left: 322px;
+
+    font-family: 'LG스마트체 Regular';
+    font-size: 11px;
+
+}
+
+
+
+.deck-cards {
+    font-family: 'LG스마트체 Regular';
+}
+
+.boxPosition {
+    position: absolute;
+    top: 128px;
+    left: 420px;
+    width: 50px;
+    height: 25px;
+    /* background-color: gray; */
+}
+
+.cssText {
+    font-family: 'LG스마트체 Regular';
+    font-size: 12px;
+    color: #03c12c !important;
+}
+
+#jusuk {
+    font-family: 'LG스마트체 Regular';
+    font-size: 12px;
+    color: #ff41e8;
+    /* position: absolute;
+    left: 100px;
+    top: 200px; */
+}
+
+.deck-cards table {
+
+    font-family: 'LG스마트체 Regular';
+    text-align: center;
+    font-size: 14px;
+    /* width: 300px; */
+    width: 80%;
+    height: 70px;
+
+    border: 1px solid;
+    border-collapse: collapse;
+    /* word-wrap: break-word; */
+
+    table-layout: fixed;
+    border: 1px solid;
+    border-collapse: collapse;
+    word-break: break-all;
+    /* word-wrap: break-word; */
+
+}
+
+.deck-cards td,
+th {
+    border: 0.5px solid rgb(206, 206, 206);
+    white-space: pre-wrap;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    /* height: 25px !important; */
+    /* max-height: 30px; */
+}
+
+
+.deck-cards th {
+    background-color: #f2f2f2;
+    text-align: center !important;
+    font-size: 11pt !important;
+}
+
+
+.ctd {
+    text-align: left;
+    vertical-align: top;
+    font-size: 10pt;
+    line-height: 100%;
+
+
+}
+
+.ctd td {
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.ctd li {
+    margin: -7px 0;
+}
+
+.ctd ul {
+    margin: -7px 0;
+}
+
+.circleDiv {
+    width: 80px;
+    height: 100px;
+    text-align: center;
+    font-size: 9pt;
+    float: left;
+    width: 10%;
+}
+
+.aui-date-picker {
+    font-family: 'LG스마트체 Regular';
+}
+
+svg circle {
+
+    fill: #f2f2f2;
+    stroke: #a09e9e;
+    stroke-width: 6;
+
+}
+
+svg text {
+    font-family: 'LG스마트체 Regular';
+    fill: #000000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+svg circle:hover {
+    cursor: pointer !important;
+}
+
+svg text:hover {
+    cursor: pointer !important;
+}
+
+.btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 3px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'LG스마트체 Regular';
+}
+
+.default {
+    border-color: #e7e7e7;
+    color: black;
+}
+
+.default:hover {
+    background: #e7e7e7;
+}
