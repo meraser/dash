@@ -1,0 +1,61 @@
+<script>
+    AJS.InlineDialog(AJS.$("#inlineDialog1"), "myDialog",
+        "http://collab.lge.com/main/download/attachments/1076656445/content.html", {
+            fadeTime: 500,
+            width: 650,
+            hideDelay: null
+        });
+</script>
+검토 필요 이슈 현황<br>
+<table style="width: 78%;">
+    <colgroup>
+        <col style="width: 14%;">
+        <col style="width: 14%;">
+        <col style="width: 14%;">
+        <col style="width: 13%;">
+        <col style="width: 13%;">
+        <col style="width: 13%;">
+        <col style="width: 11%;">
+        <col>
+    </colgroup>
+    <tbody>
+        <tr>
+            <th style="text-align: center;">① Open</th>
+            <th style="text-align: center;">② In-Progress</th>
+            <!-- <th style="text-align: center;" rowspan="2">③ 모니터링</th> -->
+            <th style="text-align: center;">Resolved</th>
+            <!-- <th style="text-align: center;" rowspan="2">⑥ 문제아님</th> -->
+            <th style="text-align: center;">⑦ Total</th>
+
+        </tr>
+
+        <tr>
+            <td id="Open_E" style="cursor: pointer;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_E'), 0);">Loading...
+            </td>
+            <td id="In-Progress_E" style="cursor: pointer;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_E'));">Loading...</td>
+            <td id="Resolved_E" style="cursor: pointer; background-color: #d0e8ec;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_E'), 0);">
+            </td>
+            <td id="etcIssue" style="cursor: pointer; background-color: #d0e8ec;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_E'), 0);"></td>
+
+
+        </tr>
+
+
+    </tbody>
+</table>
+<a href="#" class="cssText" id="inlineDialog1">- 각 단계별 기준 (상세 Click)</a>,&emsp;
+<span class="cssText"><span style="color:#d0e8ec; font-size:14pt">■</span>: 누적 Data,&emsp;
+    ※Total = ① + ② + ③ + ④ + ⑤ + ⑥</span>
+<br><br>
+<div id="ListTotal_E"></div>
+
+
+
+
+<div id='Need1_E' class="boxPosition" onclick="myGlobal.makeList(this.id, $('#ListTotal_E'), 0);"></div>
+
+<!-- style="color:#ff41e8;" -->
