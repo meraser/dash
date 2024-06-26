@@ -1,0 +1,94 @@
+<script>
+    AJS.InlineDialog(AJS.$("#inlineDialog1"), "myDialog",
+        "http://collab.lge.com/main/download/attachments/1076656445/content.html", {
+            fadeTime: 500,
+            width: 650,
+            hideDelay: null
+        });
+</script>
+검토 필요 이슈 현황<br>
+<table style="width: 78%;">
+    <colgroup>
+        <col style="width: 14%;">
+        <col style="width: 14%;">
+        <col style="width: 14%;">
+        <col style="width: 13%;">
+        <col style="width: 13%;">
+        <col style="width: 13%;">
+        <col style="width: 11%;">
+        <col>
+    </colgroup>
+    <tbody>
+        <tr>
+            <th style="text-align: center;" rowspan="2">① Open</th>
+            <th style="text-align: center;" rowspan="2">② In-Progress</th>
+            <th style="text-align: center;" rowspan="2">③ 모니터링</th>
+            <th style="text-align: center;" colspan="2">Resolved</th>
+            <th style="text-align: center;" rowspan="2">⑥ 문제아님</th>
+            <th style="text-align: center;" rowspan="2">⑦ Total</th>
+
+        </tr>
+        <tr>
+            <th>④ 개선안 도출</th>
+            <th>⑤ 심의회 결과</th>
+        </tr>
+        <tr>
+            <td id="Open_N" style="cursor: pointer;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">Loading...
+            </td>
+            <td id="In-Progress_N" style="cursor: pointer;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'));">Loading...</td>
+            <td id="모니터링_N" style="cursor: pointer;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+            <td id="Device수정_N" style="cursor: pointer;" rowspan="2"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'));"> </td>
+
+            <td id="즉대응_N" style="cursor: pointer; background-color: #d0e8ec;" colspan="1"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+
+            <td id="문제아님_N" style="cursor: pointer; background-color: #d0e8ec;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+            <td id="allIssue_N" style="cursor: pointer; background-color: #d0e8ec;" rowspan="4"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);"></td>
+
+        </tr>
+        <tr>
+
+            <td id="차기양산_N" style="cursor: pointer; background-color: #d0e8ec;" colspan="1"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+            <!-- <td id="업체" style="cursor: pointer;" rowspan="2" onclick="myGlobal.makeList(this.id, $('#ListTotal'));"> -->
+            </td>
+
+        </tr>
+        <tr>
+            <td id="CP/Server수정_N" style="cursor: pointer; background-color: #d0e8ec;" rowspan="2"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+            <td id="MR대응_N" style="cursor: pointer; background-color: #d0e8ec;" colspan="1"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+        </tr>
+        <tr>
+            <td id="현상태진행_N" style="cursor: pointer; background-color: #d0e8ec;" colspan="1"
+                onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);">
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<a href="#" class="cssText" id="inlineDialog1">- 각 단계별 기준 (상세 Click)</a>,&emsp;
+<span class="cssText"><span style="color:#d0e8ec; font-size:14pt">■</span>: 누적 Data,&emsp;
+    ※Total = ① + ② + ③ + ④ + ⑤ + ⑥</span>
+<br><br>
+<div id="ListTotal_N"></div>
+
+
+
+
+<div id='Need1_N' class="boxPosition" onclick="myGlobal.makeList(this.id, $('#ListTotal_N'), 0);"></div>
+
+<!-- style="color:#ff41e8;" -->
