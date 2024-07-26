@@ -1,4 +1,4 @@
-//testzzz
+//test
 myGlobal = {};
 // myGlobal.requestArray = [];
 myGlobal.dearray = [];
@@ -8,7 +8,7 @@ myGlobal.query = {
 
     dev: 'project = TVCSISSUE AND ( labels not in ("SQI", "일일모니터링", "사용자리포트")  OR (labels in("PM_LINK") AND labels in (일일모니터링))) AND issuetype in ("Field Issue", "Bug") AND created >= ',
     dev2: 'project = TVCSISSUE AND labels in ("이슈분석") AND issuetype not in ("Field Issue", "Bug") AND created >= ',
-    sqi: 'project = SQITASK AND created >= ', // AND created >= 2019-01-01',
+    // sqi: 'project = SQITASK AND created >= ', // AND created >= 2019-01-01',
     date: '2020-01-01',
     date2: '2019-01-01',
     resolved: ' AND status in (Open)',
@@ -122,12 +122,15 @@ myGlobal.makeList = function (sub, obj, page) {
         fDate = myGlobal.date1;
     } else {
         myGlobal.searchTXT = '';
-        myGlobal.date1 = '2019-12-01';
         let tt = new Date();
         // myGlobal.date2 = tt.getFullYear() + '-' + (tt.getMonth() + 1) + '-' + tt.getDate();
         tt.setHours(tt.getHours() + 9);
         myGlobal.date2 = tt.toISOString().split('T')[0];
-
+        // myGlobal.date1 = '2019-12-01';
+        let date2 = new Date(myGlobal.date2)
+        date2.setFullYear(date2.getFullYear() - 1)
+        myGlobal.date1 = date2.toISOString().split('T')[0];
+        // console.log(myGlobal.date1)
     }
     // let inputSome = ['해외법인', '한국CS', '한국매장', '규제사무국', '사업자', '기타'];
     // let inputArea = ['지역_한국', '지역_북미', '지역_유럽', '지역_일본', '지역_브라질', '지역_중국홍콩', '지역_아주중아', '지역_대만콜롬비아'];
@@ -198,7 +201,8 @@ myGlobal.makeList = function (sub, obj, page) {
     // 
 
 
-    $(obj.selector + ' #date1').val(fDate);
+    // $(obj.selector + ' #date1').val(fDate);
+    $(obj.selector + ' #date1').val(myGlobal.date1);
     $(obj.selector + ' #date2').val(myGlobal.date2);
     $('#text_Search').val(myGlobal.searchTXT);
 
@@ -292,7 +296,7 @@ myGlobal.first_action = function () {
     // tvcsissue 
     let d1 = myGlobal.query.dev + myGlobal.query.date + myGlobal.query.order;
     // SQI 
-    let d2 = myGlobal.query.sqi + myGlobal.query.date + myGlobal.query.order;
+    // let d2 = myGlobal.query.sqi + myGlobal.query.date + myGlobal.query.order;
 
     let d3 = myGlobal.query.dev2 + myGlobal.query.date2 + myGlobal.query.order;
 
@@ -305,12 +309,12 @@ myGlobal.first_action = function () {
         "startAt": "0",
         "fields": ['summary', "created", "assignee", "status", 'labels', 'description', 'components', 'customfield_16500', 'resolution', 'customfield_16503', 'customfield_16502']
     };
-    let paramDEV = {
-        "jql": d2,
-        "maxResults": "1000",
-        "startAt": "0",
-        "fields": ['summary', "created", "customfield_14503", "status", 'labels', 'customfield_14407', 'customfield_14406']
-    };
+    // let paramDEV = {
+    //     "jql": d2,
+    //     "maxResults": "1000",
+    //     "startAt": "0",
+    //     "fields": ['summary', "created", "customfield_14503", "status", 'labels', 'customfield_14407', 'customfield_14406']
+    // };
 
     let paramE = {
         "jql": d3,
@@ -320,7 +324,7 @@ myGlobal.first_action = function () {
     };
 
     myGlobal.loadAjax('dev', paramQ, qURL, myGlobal.loadIssue);
-    myGlobal.loadAjax('sqi', paramDEV, devURL, myGlobal.loadIssue);
+    // myGlobal.loadAjax('sqi', paramDEV, devURL, myGlobal.loadIssue);
     myGlobal.loadAjax('dev2', paramE, qURL, myGlobal.loadIssue);
 
 
@@ -559,7 +563,8 @@ myGlobal.dataSort = function () {
     for (let i in ai) {
         let inputFlag = true;
         let areacount = 0;
-        if (i.indexOf('SQI') > -1) {
+        // if (i.indexOf('SQI') > -1) {
+        if (i.indexOf('SQI') < -1) {
             // for (let i in ai) {
             for (let j in inputArea) {
                 if (ai[i].Labels.indexOf(myGlobal.labels[inputArea[j]]) > -1) {
@@ -576,7 +581,7 @@ myGlobal.dataSort = function () {
             }
         } else {
             // for (let i in ai) {
-            console.log(i);
+            // console.log(i);
             for (let j in inputArea) {
 
                 if (ai[i].Area.indexOf(areaForTVCS[j]) > -1) {
@@ -594,7 +599,7 @@ myGlobal.dataSort = function () {
 
         }
         if (inputFlag) myGlobal['Need3'][i] = ai[i];
-        if (areacount > 1) console.log('over' + i);
+        // if (areacount > 1) console.log('over' + i);
 
 
     }
@@ -772,30 +777,32 @@ myGlobal.loadIssue = function (i, data, deferred) {
 
         myGlobal.dResolve(deferred);
 
-    } else if (i == 'sqi') {
-        // console.log(data);
-        for (let i in arr) {
-            let tempKey = arr[i].key;
-            myGlobal.allIssue[tempKey] = {};
-            let ar = arr[i].fields;
-            myGlobal.allIssue[tempKey].Summary = ar.summary;
-            myGlobal.allIssue[tempKey].Create = ar.created.split('T')[0];
-            myGlobal.allIssue[tempKey].Status = ar.status.name;
-            if (ar.customfield_14407) myGlobal.allIssue[tempKey].Description = ar.customfield_14407;
-            else myGlobal.allIssue[tempKey].Description = '';
-            if (ar.customfield_14406) myGlobal.allIssue[tempKey].issueDes = ar.customfield_14406;
-            else myGlobal.allIssue[tempKey].issueDes = '';
-            if (ar.customfield_14503) myGlobal.allIssue[tempKey].Assignee = ar.customfield_14503[0].displayName.split(' ')[0];
-            else myGlobal.allIssue[tempKey].Assignee = 'Empty';
-            myGlobal.allIssue[tempKey].Labels = ar.labels;
-            myGlobal.allIssue[tempKey].Resol = 'Empty';
-            myGlobal.allIssue[tempKey].Ftype = 'Field Claim';
-            myGlobal.allIssue[tempKey].Stype = 'SW';
-            myGlobal.allIssue[tempKey].iDesHTML = 'Empty';
-            myGlobal.allIssue[tempKey].DesHTML = 'Empty';
-        }
-        myGlobal.dResolve(deferred);
-    } else if (i == 'dev2') {
+    }
+    // else if (i == 'sqi') {
+    //     // console.log(data);
+    //     for (let i in arr) {
+    //         let tempKey = arr[i].key;
+    //         myGlobal.allIssue[tempKey] = {};
+    //         let ar = arr[i].fields;
+    //         myGlobal.allIssue[tempKey].Summary = ar.summary;
+    //         myGlobal.allIssue[tempKey].Create = ar.created.split('T')[0];
+    //         myGlobal.allIssue[tempKey].Status = ar.status.name;
+    //         if (ar.customfield_14407) myGlobal.allIssue[tempKey].Description = ar.customfield_14407;
+    //         else myGlobal.allIssue[tempKey].Description = '';
+    //         if (ar.customfield_14406) myGlobal.allIssue[tempKey].issueDes = ar.customfield_14406;
+    //         else myGlobal.allIssue[tempKey].issueDes = '';
+    //         if (ar.customfield_14503) myGlobal.allIssue[tempKey].Assignee = ar.customfield_14503[0].displayName.split(' ')[0];
+    //         else myGlobal.allIssue[tempKey].Assignee = 'Empty';
+    //         myGlobal.allIssue[tempKey].Labels = ar.labels;
+    //         myGlobal.allIssue[tempKey].Resol = 'Empty';
+    //         myGlobal.allIssue[tempKey].Ftype = 'Field Claim';
+    //         myGlobal.allIssue[tempKey].Stype = 'SW';
+    //         myGlobal.allIssue[tempKey].iDesHTML = 'Empty';
+    //         myGlobal.allIssue[tempKey].DesHTML = 'Empty';
+    //     }
+    //     myGlobal.dResolve(deferred);
+    // } 
+    else if (i == 'dev2') {
         for (let i in arr) {
             let tempKey = arr[i].key;
             myGlobal.etcIssue[tempKey] = {};
@@ -811,7 +818,8 @@ myGlobal.loadIssue = function (i, data, deferred) {
         }
         myGlobal.dResolve(deferred);
 
-    } else console.log('unkown...issue plz check again..');
+    }
+    else console.log('unkown...issue plz check again..');
 }
 myGlobal.loadAjax = function (index, param, searchURL, myFunction) {
 
